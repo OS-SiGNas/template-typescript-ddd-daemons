@@ -1,3 +1,3 @@
-!#/bin/bash
+#!/bin/bash
 
 ./node_modules/typescript/bin/tsc
