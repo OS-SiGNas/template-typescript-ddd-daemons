@@ -1,0 +1,36 @@
+{
+	"name": "template-typescript-ddd-daemons",
+	"version": "1.0.0",
+	"description": "2027 Typescript config in DDD and EDD",
+	"keywords": [],
+	"license": "MIT",
+	"author": "Alfredo Manrique",
+	"type": "module",
+	"main": "./dist/index.js",
+	"imports": {
+		"#Config": "./dist/Applications/system/config.js",
+		"#Domain": "./dist/Domain/index.js",
+		"#Infrastructure/*": "./dist/Infrastructure/*",
+		"#common/*": "./dist/Applications/common/*",
+		"#models/*": "./dist/Applications/models/*"
+	},
+	"scripts": {
+		"dev:debug": "NODE_ENV=development node --watch ./src/index.ts",
+		"dev:node": "NODE_ENV=development node --watch ./src/index.ts",
+		"dev:tsx": "NODE_ENV=development tsx --watch ./src/index.ts",
+		"dev:concurrently": "NODE_ENV=development concurrently './script.tsc.sh' './script.node.sh' ",
+		"start": "NODE_ENV=production node ./dist/index.js",
+		"test:watch": "NODE_ENV=testing tsx --test --watch",
+		"test": "NODE_ENV=testing tsx --test",
+		"check": "tsc --noEmit",
+		"lint": "oxlint",
+		"build:tsc": "tsc"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^26.6.6",
+		"oxfmt": "^0.77.0",
+		"oxlint": "^1.92.0",
+		"typescript": "^7.0.2"
+	}
+}

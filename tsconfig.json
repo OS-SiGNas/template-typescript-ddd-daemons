@@ -1,0 +1,48 @@
+{
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"],
+	"ts-node": {
+		"swc": true,
+		"esm": true
+	},
+	"compilerOptions": {
+		"target": "ES2024",
+		"types": ["node"],
+		"moduleDetection": "force",
+		"module": "",
+		"moduleResolution": "node10",
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"allowImportingTsExtensions": true,
+		"allowJs": true,
+		"removeComments": true,
+		"noEmit": true,
+		"pretty": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": false,
+		"noImplicitThis": true,
+		"useUnknownInCatchVariables": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"skipLibCheck": false,
+		"paths": {
+			"#Config": ["./src/Applications/system/config"],
+			"#Domain": ["./src/Domain/index"],
+			"#Infrastructure/*": ["./src/Infrastructure/*"],
+			"#common/*": ["./src/Applications/common/*"],
+			"#subscribers/*": ["./src/Applications/subscribers/*"],
+			"#models/*": ["./src/Applications/models/*"]
+		}
+	}
+}
