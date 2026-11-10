@@ -1,17 +1,15 @@
-import { HttpStatus } from "../response/http-status.enum.ts";
+import { HttpStatus } from "../response/http-status.enum.js";
 
 import type { UUID } from "node:crypto";
 import type { HttpStatusCode } from "../response/IResponse";
 
-export type Ticket = UUID;
-
 interface DependenciesException extends ErrorOptions {
-	ticket?: Ticket;
+	ticket?: UUID;
 }
 
 export abstract class DomainException extends Error {
 	public abstract code: HttpStatusCode;
-	public abstract ticket: Ticket;
+	public abstract ticket?: UUID;
 	protected constructor(message: string, d?: DependenciesException) {
 		super(message, d?.cause !== undefined ? { cause: d?.cause } : undefined);
 	}
@@ -27,7 +25,7 @@ type ExceptionsFactory = (p: PayloadFactory) => new (message: string, d?: Depend
 const createException: ExceptionsFactory = ({ name, code, defaultMessage }) => {
 	return class extends DomainException {
 		public override code: HttpStatusCode;
-		public override ticket: Ticket;
+		public override ticket?: UUID;
 		constructor(message: string, d?: DependenciesException) {
 			if (defaultMessage === undefined) super(message, d);
 			else super(defaultMessage.replace("[replace]", message), d);

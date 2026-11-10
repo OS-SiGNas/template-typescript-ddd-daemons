@@ -1,6 +1,6 @@
-import { Logger } from "#common/logger-handler/make.ts";
-import { uuidGenerator } from "#common/uuid-generator.ts";
-import { BadRequestException400 } from "./errors/error.factory.ts";
+import { Logger } from "#common/logger-handler/make.js";
+import { uuidGenerator } from "#common/uuid-generator.js";
+import { BadRequestException400 } from "./errors/error.factory.js";
 
 import type { UUID } from "crypto";
 import type { ILogger } from "./ILogger.ts";

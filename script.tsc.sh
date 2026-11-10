@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-./node_modules/typescript/bin/tsc
+./node_modules/typescript/bin/tsc -w src/index.ts --ignoreConfig

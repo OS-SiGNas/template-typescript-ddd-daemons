@@ -1,5 +1,6 @@
-import { ZodError } from "zod";
+// import { ZodError } from "zod";
 import { DEBUG } from "#Config";
+import type { UUID } from "node:crypto";
 import { DomainException, InternalServerException500 } from "../../../Domain/index.ts";
 
 import type { GetHttpMessage, HttpResponse, HttpStatusCode, IResponse, IResponseHandler } from "../../../Domain/index.ts";
@@ -31,7 +32,7 @@ export class _ResponseHandler implements IResponseHandler {
 
 	readonly #formatError = (error: unknown): IResponse<never> => {
 		if (error instanceof DomainException) return this.#domainErrors(error);
-		if (error instanceof ZodError) return this.#unprocessableEntityErrors(error);
+		//if (error instanceof ZodError) return this.#unprocessableEntityErrors(error);
 		return this.#unhandledError();
 	};
 
@@ -43,14 +44,14 @@ export class _ResponseHandler implements IResponseHandler {
 		};
 	};
 
-	readonly #unprocessableEntityErrors = ({ issues }: ZodError): IResponse<never> => ({
-		info: this.#getInfo(422),
-		error: {
-			name: "UnprocessableEntityError",
-			message: "Check cause for issues",
-			cause: issues.map(({ path, message }) => `${path.join(" -> ")} ${message}`),
-		},
-	});
+	// readonly #unprocessableEntityErrors = ({ issues }: ZodError): IResponse<never> => ({
+	// 	info: this.#getInfo(422),
+	// 	error: {
+	// 		name: "UnprocessableEntityError",
+	// 		message: "Check cause for issues",
+	// 		cause: issues.map(({ path, message }) => `${path.join(" -> ")} ${message}`),
+	// 	},
+	// });
 
 	readonly #unhandledError = (): IResponse<never> => {
 		const message = "Ups!. Something went wrong, please try latter";
@@ -62,7 +63,7 @@ export class _ResponseHandler implements IResponseHandler {
 		};
 	};
 
-	readonly #getInfo = (code: HttpStatusCode, ticket?: string): IResponse<void>["info"] => ({
+	readonly #getInfo = (code: HttpStatusCode, ticket?: UUID): IResponse<void>["info"] => ({
 		success: code < 400,
 		code,
 		ticket,

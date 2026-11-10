@@ -1,7 +1,7 @@
 import { secrets } from "#Config";
-import { uuidGenerator } from "../../Applications/common/uuid-generator.ts";
+import { uuidGenerator } from "../../Applications/common/uuid-generator.js";
 
-import type { EventContext, EventMetadata, EventPayload, IEvent } from "../index.ts";
+import type { EventContext, EventMetadata, EventPayload, IEvent } from "../index";
 
 export type EventFactory = <M extends object, C extends EventContext = null>(payload: EventPayload<M, C>) => IEvent<M, C>;
 export const eventFactory: EventFactory = ({ metadata: { action, correlationId, moduleEmitter }, context, message }) => {

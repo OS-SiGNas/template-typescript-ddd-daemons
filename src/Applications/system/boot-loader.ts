@@ -2,14 +2,14 @@ import type { SystemDaemon, DomainEventBus, Environment, ILogger } from "#Domain
 
 import { DEBUG, NODE_ENV, secrets } from "#Config";
 import { Actions, bus } from "#Domain";
-import { httpServer } from "#Infrastructure/daemons/http/make.ts";
-import { Logger } from "#common/logger-handler/make.ts";
+import { http } from "#Infrastructure/daemons/http/make.js";
+import { Logger } from "#common/logger-handler/make.js";
 
 /**
  * @description Main
  * @description default application boot loader */
 new (class {
-	readonly #daemons: SystemDaemon[] = [httpServer];
+	readonly #daemons: SystemDaemon[] = [http];
 	readonly #bus: DomainEventBus = bus;
 	readonly #logger: ILogger = new Logger(secrets.APP_NAME);
 	readonly #environment: Environment = NODE_ENV;

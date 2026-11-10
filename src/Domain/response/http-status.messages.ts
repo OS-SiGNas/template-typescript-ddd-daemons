@@ -1,4 +1,4 @@
-import { HttpStatus } from "./http-status.enum.ts";
+import { HttpStatus } from "./http-status.enum.js";
 
 export type GetHttpMessage = (status: number) => string;
 

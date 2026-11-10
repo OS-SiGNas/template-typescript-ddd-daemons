@@ -1,7 +1,7 @@
 import type { Environment, Secrets } from "#Domain";
 
-import { bgRed, cyan, white } from "#common/logger-handler/colors.utils.ts";
-import { secretsParser } from "./secrets.parser.ts";
+import { bgRed, cyan, white } from "#common/logger-handler/colors.utils.js";
+import { secretsParser } from "./secrets.parser.js";
 
 export const { DEBUG, NODE_ENV, secrets } = new (class {
 	readonly #NODE_ENV: Environment;
@@ -22,7 +22,7 @@ export const { DEBUG, NODE_ENV, secrets } = new (class {
 		}
 	}
 
-	readonly #envError = (msg: string, cause?: unknown): Error => new (class EnvironmentError extends Error {})(`Variable 'NODE_ENV' ${msg} 💩`, { cause });
+	readonly #envError = (msg: string, cause?: unknown): Error => new (class EnvironmentError extends Error { })(`Variable 'NODE_ENV' ${msg} 💩`, { cause });
 	readonly #getEnvironment = (NODE_ENV?: string): Environment => {
 		if (NODE_ENV === undefined) throw this.#envError("is not defined");
 		const environments: Environment[] = ["production", "testing", "development"];
